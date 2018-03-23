@@ -6,17 +6,20 @@
 # Site
 title: 天空之城
 subtitle: 不想当裁缝的厨子不是好司机，不想当产品的设计不是好程序员。
-description:
+description: iOS工程师 | 5年开发 | 目前就职于广州大象健康 -- 健康猫
 author: Lee Coach/李桂治
+#author_img: /assets/images/author.png
+avatar: /assets/images/author.png
 
-intro_line1: 这里介绍1
-intro_line2: 这是介绍2
+#intro_line: 这里介绍1
+#intro_line: 这是介绍2
 email: rosizzapp@yeah.net
-github: https://github.com/LeeCoach/
+#github_username: https://github.com/LeeCoach/
 
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans   #语言选择中文
 date_format: '%Y-%m-%d'
+
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
@@ -120,13 +123,14 @@ index_with_subtitle: false
 # Menu Settings
 # ---------------------------------------------------------------
 
+# 顶部菜单栏/导航栏
 # When running the site in a subdirectory (e.g. domain.tld/blog), remove the leading slash (/archives -> archives)
 menu:
   home: /
-  #categories: /categories/
-  #about: /about/
+  categories: /categories/
   archives: /archives/
   tags: /tags/
+  about: /about/
   #sitemap: /sitemap.xml
   #commonweal: /404.html
 
@@ -240,10 +244,11 @@ social_icons:
 # in directory: /assets/images/avatar.gif
 #avatar:
 
-
+# 目录
 # Table Of Contents in the Sidebar
 toc:
-  enable: true
+  enable: true ## 是否在侧边栏显示目录
+  #article: true   ## 是否在文章中显示目录
 
   # Automatically add list number to toc.
   number: true
@@ -284,14 +289,17 @@ sidebar:
   # Scroll percent label in b2t button
   scrollpercent: false
 
-
+# 友情链接
 # Blog rolls
-#links_title: Links
+links_title: 技术链接
 #links_layout: block
 #links_layout: inline
-#links:
-  #Title: http://example.com/
-
+links:
+    #Title: http://example.com/
+    Github: https://github.com/
+    CSDN: https://www.csdn.net/
+    51CTO: http://www.51cto.com/
+    开源中国社区: https://www.oschina.net/
 
 # ---------------------------------------------------------------
 # Post Settings
