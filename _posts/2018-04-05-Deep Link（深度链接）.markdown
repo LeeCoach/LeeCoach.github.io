@@ -17,3 +17,31 @@ tags: 深度链接 DeepLink
 **Deferred Deeplink（延展的深度链接）**
 
 Deeplink有个局限，就是只能在已安装的APP之间进行跳转。如果没安装，就会出现下面的场景：用户在微信点击这个商品链接后，屏幕跳转到一个HTML5页面，页面右上角会有个按钮提示你到App Store下载。下载后打开应用，发现之前的商品页面找不到了。那么，用户很可能会直接卸载应用，商铺也会失去一次有效交易。这时就需要Deeplink的进阶技术 —— Deferred Deeplink。当用户下载安装APP后，它可以直接打开此前显示的商品页面。
+
+
+
+**如何实现 Deeplink**
+
+1、自定义URL Scheme
+
+URL Scheme是iOS，Android平台都支持，只需要原生APP开发时注册Scheme， 那么用户点击到此类链接时，会自动唤醒APP，借助于URL Router机制，则还可以跳转至指定页面，在Web端稍加逻辑判断，还可进一步实现Deferred Deeplink。
+
+
+
+2、iOS Universal Links/Android App Links
+
+在2015年的WWDC大会上，Apple推出了iOS 9的一个功能：Universal Links通用链接。如果你的App支持Universal Links，那就可以访问HTTP/HTTPS链接直接唤起APP进入具体页面，不需要其他额外判断。同年的Google I/O大会上，Android M宣布了一个新特性：App Links让用户在点击一个普通web链接的时候可以打开指定APP的指定页面。在推动Deeplink上Google和Apple可谓英雄所见略同
+
+
+
+**第三方库**
+
+支持deep linking 和 deferred deep linking 的第三方服务，比如 [AppsFlyer](https://www.appsflyer.com/) 和 [Branch](https://bnc.lt/m/ZMP20tqkKp)。
+
+其中 AppsFlyer 的优势在于他们跟很多公司有合作关系，比如 Facebook，所以用于追踪 Facebook 广告效果表现较好。另外 AppsFlyer 支持很多第三方服务的 server callback，可以方便集成很多第三方服务。缺点是 AppsFlyer 按 non-organic install 量收费。而且 AppsFlyer 的 SDK 和 API doc 写的不是很好，在 track 安装以后的后续 deep link 的时候感觉有很多 bug。
+
+[Branch](https://bnc.lt/m/ZMP20tqkKp) 的优势在于免费，SDK 和 API doc 都写的比较好，而且有一些特殊的功能比如用户邀请及奖励之类的，适合做一些运营活动。另外 Branch 可以实现一个 link 根据平台自动跳转不同 Store，甚至可以在 desktop 上通过短信发送可以追踪的链接。缺点是 Branch 运营时间不久，服务稳定性有待验证，dashboard 的功能也还比较轻量。
+
+总的来说 AppsFlyer 更适合 track 广告效果，Branch 更适合实现 feature。必须一提的是，因为这两个服务都是主要面向海外市场的，所以曾经都遇到过国内短暂抽风的现象，所以国内的 app 如果要用的话风险自担 :) 如果国内有类似的服务的话也欢迎留言补充。
+
+Branch 的集成比较简单，参见[官方文档](https://dev.branch.io/recipes/add_the_sdk/)。一个需要注意的是，自己实现的时候在 handle URL 或者 user activity 的时候可以直接处理 URL，但是用 Branch 的时候，第一级的 URL 是 Branch 的 URL，所以要通过 `[[Branch getInstance] handleDeepLink:url]` 和/或 `[[Branch getInstance] continueUserActivity:userActivity]` 交由 Branch 处理，然后在 init Branch 时传入的 block (closure) 中处理[各类参数](https://dev.branch.io/recipes/add_the_sdk/#branch-provided-data-parameters-in-callback)：
