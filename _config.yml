@@ -6,7 +6,7 @@
 # Site
 title: 天空之城
 subtitle: 不想当裁缝的厨子不是好司机，不想当产品的设计不是好程序员。
-description: iOS工程师 | 5年开发 | 目前就职于广州大象健康 -- 健康猫
+description: iOS工程师 | 目前就职于广州利他网络科技 -- 共享师资
 author: Lee Coach/李桂治
 #author_img: /assets/images/author.png
 avatar: /assets/images/author.png
@@ -300,6 +300,7 @@ links:
     CSDN: https://www.csdn.net/
     51CTO: http://www.51cto.com/
     开源中国社区: https://www.oschina.net/
+    代码库:http://code.cocoachina.com/
 
 # ---------------------------------------------------------------
 # Post Settings
